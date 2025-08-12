@@ -1,14 +1,14 @@
 import tkinter as tk
 import clips
 
-# Crear entorno CLIPS
+
 env = clips.Environment()
 
-# Definir plantillas
+
 env.build("(deftemplate rendimiento (slot promedio (type FLOAT)) (slot materias_perdidas (type INTEGER)))")
 env.build("(deftemplate evaluacion (slot resultado (type STRING)))")
 
-# Definir reglas con parámetros ajustados
+
 env.build('''
 (defrule excelente
   (rendimiento (promedio ?p&:(>= ?p 4.5)) (materias_perdidas ?m&:(= ?m 0)))
@@ -49,7 +49,7 @@ env.build('''
 )
 ''')
 
-# Función para evaluar
+
 def evaluar():
     try:
         promedio = float(entry_promedio.get())
@@ -90,7 +90,7 @@ def evaluar():
     except ValueError as e:
         label_resultado.config(text=f"Error: {e}")
 
-# Crear ventana
+
 root = tk.Tk()
 root.title("Sistema Experto - Evaluación Académica")
 root.geometry("450x250")
@@ -105,7 +105,7 @@ entry_materias.pack()
 
 tk.Button(root, text="Evaluar", command=evaluar).pack(pady=10)
 
-# Label extra para mostrar resultado en la misma ventana
+
 label_resultado = tk.Label(root, text="", fg="blue", font=("Arial", 12), justify="left")
 label_resultado.pack(pady=10)
 
